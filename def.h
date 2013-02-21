@@ -16,6 +16,8 @@
 #define BACK_CMD 3
 #define RIGHT_CMD 4
 
+const int RIGHT_BUTTON_PIN = 41;     // PIN for Right button
+const int LEFT_BUTTON_PIN = 40;      // PIN for Left button 
 
 
 
