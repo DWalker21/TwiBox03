@@ -35,7 +35,7 @@ if (messages_number>=MSGS_NUM){ // list is FULL and new message came
   }
 
 // print actual state of messages
-if (dedug) {
+if (debug) {
   PrintMessages();
   }
 
