@@ -3,22 +3,14 @@
 */
 
 #include <LiquidCrystal.h>
+#include "def.h"
 
-#define MSGS_NUM 10
-#define MSG_LEN 140
 
-// commands
-#define NO_CMD 0
-#define LEFT_CMD 1
-#define ACTION_CMD 2
-#define BACK_CMD 3
-#define RIGHT_CMD 4
 
-// global variable
 int debug=1; //debug = 1 - start debug output in case we need it
 
-//char twi_messages[MSGS_NUM][MSG_LEN];
-String twis_messages[MSGS_NUM];
+// global variable
+String twi_messages[MSGS_NUM];
 int message_first, message_last; // index of the message that was filled in first (oldest one) and last (fresh one)
 int messages_number; // how many messages we have
 int video_views; // how many views till the scrolling text starts
@@ -83,16 +75,15 @@ return 0;
 void CreateTestMessages()
 {
 
-twis_messages[0]="Test String 0 - Russian meteorite images caught on dashboard cameras  Google";  
-twis_messages[1]="Test String 1 Tesla's Musk Broder Quarrel Echoes Previous Top Gear Fallout  What Really ...";
-twis_messages[2]="Test String 2 Trailing Twitter, but Pinterest could soon be second most used social network";
-twis_messages[3]="Test String 3 Apple's new iPad ad campaign promotes 300000 apps for everything you love";
-twis_messages[4]="Test String 4 Facebook 's VP nearly confirms Facebook is working on auto-play video ads";
-twis_messages[5]="Test String 5 Some news string";
+twi_messages[0]="Test String 0 - Russian meteorite images caught on dashboard cameras  Google";  
+twi_messages[1]="Test String 1 Tesla's Musk Broder Quarrel Echoes Previous Top Gear Fallout  What Really ...";
+twi_messages[2]="Test String 2 Trailing Twitter, but Pinterest could soon be second most used social network";
+twi_messages[3]="Test String 3 Apple's new iPad ad campaign promotes 300000 apps for everything you love";
+twi_messages[4]="Test String 4 Facebook 's VP nearly confirms Facebook is working on auto-play video ads";
+twi_messages[5]="Test String 5 Some news string";
 //messages_number=5;
 
-if (debug)
-  {
+if (debug){
   Serial1.println(" run Create Test Messages ");
   }
 }
@@ -185,7 +176,7 @@ if (debug)
   Serial1.println(" run Print All Messages, current state is below:\n");
   for (i=0; i<MSGS_NUM; i++)
     {
-    Serial1.println(twis_messages[i]);  
+    Serial1.println(twi_messages[i]);  
     /*  
     for (j=0; j<50; j++)
       {  
@@ -238,8 +229,8 @@ if (debug)
   Serial1.println(" run Twi Messages Append ");
   }  
   
-twis_messages[message_last]=""; /// clear the place write to
-twis_messages[message_last]=new_message;
+twi_messages[message_last]=""; /// clear the place write to
+twi_messages[message_last]=new_message;
 messages_number=messages_number+1;
 
 if (messages_number<MSGS_NUM) // not complete queee
@@ -296,13 +287,13 @@ if (debug)
   }    
 */
   lcd.setCursor(0, 0);
-  lcd.print(twis_messages[video_message_first].substring(0+scroll_shift,16+scroll_shift));
+  lcd.print(twi_messages[video_message_first].substring(0+scroll_shift,16+scroll_shift));
   lcd.setCursor(0, 1);
-  lcd.print(twis_messages[video_message_first].substring(16+scroll_shift,32+scroll_shift));
+  lcd.print(twi_messages[video_message_first].substring(16+scroll_shift,32+scroll_shift));
   lcd.setCursor(0, 2);
-  lcd.print(twis_messages[video_message_first].substring(32+scroll_shift,48+scroll_shift));
+  lcd.print(twi_messages[video_message_first].substring(32+scroll_shift,48+scroll_shift));
   lcd.setCursor(0, 3);
-  lcd.print(twis_messages[video_message_first].substring(48+scroll_shift,64+scroll_shift));
+  lcd.print(twi_messages[video_message_first].substring(48+scroll_shift,64+scroll_shift));
 
 
 // and print system information
