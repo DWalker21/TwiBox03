@@ -19,6 +19,11 @@
 const int RIGHT_BUTTON_PIN = 41;     // PIN for Right button
 const int LEFT_BUTTON_PIN = 40;      // PIN for Left button 
 
+// Encoder connected ports
+const int ACT_ENCODER = 32; 
+const int A_ENCODER = 35;
+const int B_ENCODER = 34; 
+
 // Slide Show options defines
 #define SLD_SHOW_OFF 0
 #define SLD_SHOW_ON 1

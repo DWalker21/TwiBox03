@@ -6,7 +6,7 @@
 void ExecuteCommand(){
 
 if (debug){
-  //Serial1.println(" run Execute Commands ");
+  Serial1.println(" run Execute Commands ");
   }     
 
 switch (main_command){

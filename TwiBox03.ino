@@ -23,7 +23,7 @@ char msg_text_buff[MSG_LEN];       // new string that comming from serial
 int msg_lenght;                     // the lenght of the new string 
 
 // base timer loops
-uint32_t fast_loop, loop_20, loop_600, loop_2000, loop_5000, loop_60sec;
+uint32_t fast_loop, loop_1, loop_20, loop_600, loop_2000, loop_5000, loop_60sec;
 // COMMAND to execute
 int main_command;
 
@@ -46,6 +46,10 @@ debug=1;
 
 pinMode(LEFT_BUTTON_PIN, INPUT);    
 pinMode(RIGHT_BUTTON_PIN, INPUT);    
+
+pinMode(ACT_ENCODER, INPUT); 
+pinMode(A_ENCODER, INPUT); 
+pinMode(B_ENCODER, INPUT); 
 
 Serial2.begin (9600); // serial read #2 (works on MEGA only)
 Serial1.begin (9600); // debug serial
@@ -100,6 +104,13 @@ uint32_t timer = millis();
 
 ReadSerial(); 
 ReadCommandButtons();
+
+// run every 1 millisecond
+  if ((timer - loop_1) >=10) {
+    loop_1=timer;
+    ReadEncoder();
+    }    
+
 
 // run every 20 millisecond
   if ((timer - loop_20) >=20) {
