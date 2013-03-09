@@ -19,5 +19,11 @@
 const int RIGHT_BUTTON_PIN = 41;     // PIN for Right button
 const int LEFT_BUTTON_PIN = 40;      // PIN for Left button 
 
+// Slide Show options defines
+#define SLD_SHOW_OFF 0
+#define SLD_SHOW_ON 1
 
+// define scrolling option
+#define SCROLL_OFF 0
+#define SCROLL_ON 1
 

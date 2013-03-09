@@ -23,9 +23,15 @@ char msg_text_buff[MSG_LEN];       // new string that comming from serial
 int msg_lenght;                     // the lenght of the new string 
 
 // base timer loops
-uint32_t fast_loop, loop_20, loop_600 , loop_5000;
+uint32_t fast_loop, loop_20, loop_600, loop_2000, loop_5000, loop_60sec;
 // COMMAND to execute
 int main_command;
+
+// Slide Show option
+int slide_show;
+int message_scroll;
+
+int scroll_shift=0;
 
 /******************************************************************
 *
@@ -73,7 +79,12 @@ if (debug){
 fast_loop=0;
 loop_20=0;
 loop_600=0;
+loop_2000=0;
 loop_5000=0;
+loop_60sec=0;
+
+slide_show=SLD_SHOW_OFF;
+message_scroll=SCROLL_OFF;
 }
 
 /******************************************************************
@@ -102,15 +113,29 @@ ReadCommandButtons();
     ExecuteCommand();
     }    
 
-/* // run every 8 seconds
-  if ((timer - loop_5000) >=8000) {
+// run every 2000 millisecond
+  if ((timer - loop_2000) >=2000) {
+    loop_2000=timer;
+    scroll_one();
+    }    
+
+
+ // run every 5 seconds in case we run SlideShow
+  if ((timer - loop_5000) >=10000 && slide_show==SLD_SHOW_ON) {
     loop_5000=timer;
-    lcd.clear();
-    video_message_first+=1;  
-    if (video_message_first>messages_number) {
-      video_message_first=0;
+    //lcd.clear();
+     video_active_message+=1;  
+    if ( video_active_message>messages_number) {
+       video_active_message=0;
       }
-    }  */  
+    }    
+
+
+//run every 60 sec
+  if ((timer-loop_60sec)>=60000){
+    loop_60sec=timer;
+    slide_show=SLD_SHOW_ON;
+  }
 
 delay (10);
  

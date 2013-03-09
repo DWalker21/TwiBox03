@@ -54,10 +54,13 @@ if (Serial2.available()>0)
     msg_buff[5]=Serial2.read();  //read command
     
     if(msg_buff[5]=='l'){
-      main_command= main_command=LEFT_CMD;}
+      main_command=LEFT_CMD;}
       
     if(msg_buff[5]=='r'){
-       main_command= main_command=RIGHT_CMD;}  
+       main_command=RIGHT_CMD;} 
+      
+     if(msg_buff[5]=='a'){
+       main_command=ACTION_CMD;}   
     }
   } 
  
@@ -65,7 +68,8 @@ if (Serial2.available()>0)
 for(l=0; l<=5; l++){
   msg_buff[l]=0;
   }  
-  
+
+
   
 }
 

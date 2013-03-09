@@ -41,8 +41,12 @@ lcd.createChar(3, TWI_BACK2);
 void VideoOut()
 {
   
-int scroll_shift=0;
+
 int s;
+
+if  (message_scroll!=SCROLL_ON) {
+  scroll_shift=0;
+}
 
 // print the Active Message
   lcd.setCursor(0, 0);
@@ -94,4 +98,24 @@ lcd.print(messages_number);
 lcd.setCursor(11, 3);
 lcd.print(")"); 
   
+}
+
+//void DisplayMessageScroll( int message_number){
+/*
+  lcd.setCursor(0, 0);
+  lcd.print(twis_messages[video_message_first].substring(0+scroll_shift,16+scroll_shift));
+  lcd.setCursor(0, 1);
+  lcd.print(twis_messages[video_message_first].substring(17+scroll_shift,33+scroll_shift));
+  lcd.setCursor(0, 2);
+  lcd.print(twis_messages[video_message_first].substring(32+scroll_shift,47+scroll_shift));
+  lcd.setCursor(0, 3);
+  lcd.print(twis_messages[video_message_first].substring(48+scroll_shift,63+scroll_shift));
+
+}
+*/
+
+void scroll_one(){
+  if  (message_scroll==SCROLL_ON) {
+  scroll_shift=scroll_shift+1;
+  }
 }

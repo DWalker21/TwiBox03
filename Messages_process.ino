@@ -43,5 +43,8 @@ if (debug) {
 for (j=0;j<MSG_LEN;j++){
     msg_text_buff[j]=0;  
     }
+    
+// and stop slide show
+slide_show=SLD_SHOW_OFF;    
 }
 
