@@ -1,7 +1,7 @@
 /*******************************************************************
 * read encoder state 
 * 
-* Action, Back
+* detect rotary direction and assign commands
 * 
 * 
 *
@@ -14,6 +14,22 @@
 ********************************************************************
 */ 
 
+void add_state(int new_state, unsigned char state[])
+{
+state[1]=state[0];  
+state[0]=new_state;
+}
+
+int debounceRead(int pin){
+  int read_now, read_last;
+  while (read_now!=read_last)
+    {
+    delay(10);
+    read_last=read_now;
+    read_now=digitalRead(pin);  
+    }
+}
+
 void ReadEncoder()
 {
 
@@ -25,12 +41,15 @@ if (debug){
   Serial1.println(" run Read Encoder Data ");
    }  
 */  
+
 if (digitalRead(ACT_ENCODER)==LOW){
+//  if (debounceRead(ACT_ENCODER)==LOW){
   act_encoder_state=1;  // action pressed
-  main_command=RIGHT_CMD;
+  //main_command=RIGHT_CMD;
   }
 
 if (digitalRead(A_ENCODER)==LOW){
+//  if (debounceRead(A_ENCODER)==LOW){
   a_encoder_state=1;
   }
   
@@ -38,7 +57,36 @@ if (digitalRead(B_ENCODER)==LOW){
   b_encoder_state=1;
   }
     
+
+// in case we have a changes in comparison with prev state     
+if ((a_encoder_state!=a_state[0])||(b_encoder_state!=b_state[0])){
+  
+  // in case we have all channels ==1
+  if (a_encoder_state==1&&b_encoder_state==1){
+    
+    // read previous state 
+    if (a_state[0]==1&&b_state[0]==0){
+      main_command=LEFT_CMD;
+      }
+    if (b_state[0]==1&&a_state[0]==0){
+      main_command=RIGHT_CMD;
+      } 
+    }
+    
+  add_state(a_encoder_state, a_state);
+  add_state(b_encoder_state, b_state);
+}  
+
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+/*
+// first version of reaaaaly stupid code
  if(a_encoder_state==0&&b_encoder_state==1){
    rotate="CW";
    main_command=RIGHT_CMD;
@@ -49,7 +97,7 @@ if (digitalRead(B_ENCODER)==LOW){
    main_command=LEFT_CMD;
   }
   
-  
+*/  
 /*
 if (debug){
   Serial1.println(" Encoder state... ");

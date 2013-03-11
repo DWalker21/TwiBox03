@@ -33,6 +33,9 @@ int message_scroll;
 
 int scroll_shift=0;
 
+// store encoder state history [0] - fresh one [3] - old one
+unsigned char a_state[]={0,0};
+unsigned char b_state[]={0,0};
 /******************************************************************
 *
 * BEGIN SETUP
@@ -106,7 +109,7 @@ ReadSerial();
 ReadCommandButtons();
 
 // run every 1 millisecond
-  if ((timer - loop_1) >=10) {
+  if ((timer - loop_1) >=1) {
     loop_1=timer;
     ReadEncoder();
     }    
