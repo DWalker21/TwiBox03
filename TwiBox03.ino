@@ -33,6 +33,8 @@ int message_scroll;
 
 int scroll_shift=0;
 
+int messages_state;
+
 // store encoder state history [0] - fresh one [3] - old one
 unsigned char a_state[]={0,0};
 unsigned char b_state[]={0,0};
@@ -91,7 +93,8 @@ loop_5000=0;
 loop_60sec=0;
 
 slide_show=SLD_SHOW_OFF;
-message_scroll=SCROLL_OFF;
+message_scroll=SCROLL_ON;
+messages_state=SHOW_LINE;
 }
 
 /******************************************************************
@@ -118,8 +121,21 @@ ReadCommandButtons();
 // run every 20 millisecond
   if ((timer - loop_20) >=20) {
     loop_20=timer;
-    VideoOut(); 
-    }    
+    switch (messages_state){
+      case SHOW_LINE: {
+        VideoOut();   
+        scroll_shift=0;
+        break;
+        }
+      case SHOW_MSG: {
+        
+        DisplayMessage(video_active_message);
+        break;
+        }
+     } // end switch
+  }    
+
+
 
 // run every 300 millisecond
   if ((timer - loop_600) >=600) {
@@ -128,7 +144,7 @@ ReadCommandButtons();
     }    
 
 // run every 2000 millisecond
-  if ((timer - loop_2000) >=2000) {
+  if ((timer - loop_2000) >=900) {
     loop_2000=timer;
     scroll_one();
     }    
@@ -151,6 +167,6 @@ ReadCommandButtons();
     slide_show=SLD_SHOW_ON;
   }
 
-delay (10);
+delay (1);
  
 }

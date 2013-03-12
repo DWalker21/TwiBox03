@@ -28,6 +28,10 @@ const int B_ENCODER = 34;
 #define SLD_SHOW_OFF 0
 #define SLD_SHOW_ON 1
 
+// Messages State defines
+#define SHOW_LINE 1 // show line of messages
+#define SHOW_MSG 2 // display just active message
+
 // define scrolling option
 #define SCROLL_OFF 0
 #define SCROLL_ON 1

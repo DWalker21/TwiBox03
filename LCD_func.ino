@@ -44,19 +44,15 @@ void VideoOut()
 
 int s;
 
-if  (message_scroll!=SCROLL_ON) {
-  scroll_shift=0;
-}
-
 // print the Active Message
   lcd.setCursor(0, 0);
-  lcd.print(twi_messages[video_active_message].substring(0+scroll_shift,16+scroll_shift));
+  lcd.print(twi_messages[video_active_message].substring(0,16));
   lcd.setCursor(0, 1);
-  lcd.print(twi_messages[video_active_message].substring(16+scroll_shift,32+scroll_shift));
+  lcd.print(twi_messages[video_active_message].substring(16,32));
   lcd.setCursor(0, 2);
-  lcd.print(twi_messages[video_active_message].substring(32+scroll_shift,48+scroll_shift));
+  lcd.print(twi_messages[video_active_message].substring(32,48));
   lcd.setCursor(0, 3);
-  lcd.print(twi_messages[video_active_message].substring(48+scroll_shift,64+scroll_shift));
+  lcd.print(twi_messages[video_active_message].substring(48,64));
 
 VideoSystemMenu();
 
@@ -118,4 +114,16 @@ void scroll_one(){
   if  (message_scroll==SCROLL_ON) {
   scroll_shift=scroll_shift+1;
   }
+}
+
+void DisplayMessage( int message_number){
+  lcd.setCursor(0, 0);
+  lcd.print(twi_messages[message_number].substring(0+scroll_shift,16+scroll_shift));
+  lcd.setCursor(0, 1);
+  lcd.print(twi_messages[message_number].substring(16+scroll_shift,32+scroll_shift));
+  lcd.setCursor(0, 2);
+  lcd.print(twi_messages[message_number].substring(32+scroll_shift,48+scroll_shift));
+  lcd.setCursor(0, 3);
+  lcd.print(twi_messages[message_number].substring(48+scroll_shift,64+scroll_shift));
+  slide_show=SLD_SHOW_OFF;
 }

@@ -4,7 +4,7 @@
 */
 void CreateTestMessages()
 {
-twi_messages[0]="Test String 0 - Russian meteorite images caught on dashboard cameras  Google";  
+twi_messages[0]="Test String 0 While Dropbox's bread and butter is based in the cloud, the file sharing service and storage provider is rolling out a major refresh to the desktop user experience today.";  
 twi_messages[1]="Test String 1 Tesla's Musk Broder Quarrel Echoes Previous Top Gear Fallout  What Really ...";
 twi_messages[2]="Test String 2 Trailing Twitter, but Pinterest could soon be second most used social network";
 twi_messages[3]="Test String 3 Apple's new iPad ad campaign promotes 300000 apps for everything you love";

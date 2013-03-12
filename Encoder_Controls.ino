@@ -45,7 +45,13 @@ if (debug){
 if (digitalRead(ACT_ENCODER)==LOW){
 //  if (debounceRead(ACT_ENCODER)==LOW){
   act_encoder_state=1;  // action pressed
-  //main_command=RIGHT_CMD;
+  
+  if (messages_state==SHOW_MSG){
+    messages_state=SHOW_LINE;
+    }
+  else {
+    messages_state=SHOW_MSG;
+    }
   }
 
 if (digitalRead(A_ENCODER)==LOW){
